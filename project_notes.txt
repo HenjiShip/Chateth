@@ -1,0 +1,13 @@
+Clip Paths:
+
+I can make div into any shape I want with clip-path
+
+CSS Animations and transitions are possible with two or more clip-path shapes with the same number of points.
+
+https://bennettfeely.com/clippy/
+
+Motion Path: 
+
+Motion paths can be made for the Clip Path element or SVGs
+
+https://www.svgator.com/animate-svg-along-path

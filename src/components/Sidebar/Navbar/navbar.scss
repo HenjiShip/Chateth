@@ -1,0 +1,38 @@
+@use "../../../style.scss" as *;
+// importing the @mixin settings
+
+.navbar {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 10px;
+  justify-content: space-between;
+
+  .logo {
+    font-weight: bold;
+    @include tablet {
+      display: none;
+    }
+  }
+
+  .user {
+    display: flex;
+    gap: 10px;
+
+    img {
+      background-color: white;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    button {
+      background-color: black;
+      color: white;
+      border: 1px solid white;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  }
+}

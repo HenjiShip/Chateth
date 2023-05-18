@@ -1,0 +1,89 @@
+.form-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .persona-button {
+    clip-path: polygon(3% 13%, 98% 4%, 93% 92%, 3% 91%);
+    color: black;
+    background: white;
+    border: 2px solid white;
+    width: 90px;
+    height: 30px;
+    transition: 0.1s;
+
+    &:hover {
+      background-color: aqua;
+      transition: 0.1s;
+    }
+  }
+
+  .form-border {
+    position: relative;
+    padding: 30px;
+    background-color: white;
+    width: 80%;
+    max-width: 400px;
+    clip-path: polygon(5% 6%, 98% 4%, 94% 95%, 7% 94%);
+  }
+
+  .form-box {
+    background-color: black;
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    clip-path: polygon(0 2%, 100% 0, 98% 97%, 1% 99%);
+
+    // https://bennettfeely.com/clippy/
+    // clip path basically lets you shape a dif into any shape you want
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 90%;
+
+      input {
+        width: 90%;
+        border: none;
+        padding: 15px;
+        outline: none;
+        clip-path: polygon(2% 13%, 98% 4%, 99% 95%, 3% 88%);
+      }
+
+      .file-input {
+        clip-path: polygon(0 4%, 98% 4%, 95% 93%, 4% 98%);
+
+        padding: 10px;
+        color: black;
+        background: white;
+        border: 2px solid white;
+        width: 50%;
+        transition: 0.1s;
+        &:hover {
+          background-color: aqua;
+          transition: 0.1s;
+        }
+      }
+
+      button {
+        clip-path: polygon(3% 13%, 98% 4%, 93% 92%, 3% 91%);
+        color: black;
+        background: white;
+        border: 2px solid white;
+        width: 50%;
+        transition: 0.1s;
+
+        &:hover {
+          background-color: aqua;
+          transition: 0.1s;
+        }
+      }
+    }
+  }
+}
