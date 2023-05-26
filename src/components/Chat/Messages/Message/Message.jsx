@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./message.scss";
+import { AuthContext } from "../../../../context/AuthContext";
+import { ChatContext } from "../../../../context/ChatContext";
 
 // nested in Messages
-const Message = () => {
+const Message = ({ message }) => {
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+
+  console.log(message);
+
   return (
     <div className="message owner">
       <div className="message-info">
@@ -14,11 +21,8 @@ const Message = () => {
       </div>
 
       <div className="message-content">
-        <p>hello</p>
-        <img
-          src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
-          alt=""
-        />
+        <p>{message.text}</p>
+        {message?.img && <img src={message?.img} alt="" />}
       </div>
     </div>
   );

@@ -1,17 +1,48 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./chats.scss";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { AuthContext } from "../../../context/AuthContext";
+import { ChatContext } from "../../../context/ChatContext";
+import { CHANGE_USER } from "../../../utils/actions";
 
 // nested in Sidebar
 const Chats = () => {
+  const [chats, setChats] = useState([]);
+
+  const { currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
+
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+      return () => {
+        unsub();
+      };
+    };
+
+    currentUser.uid && getChats();
+  }, [currentUser.uid]);
+
+  const handleSelect = (u) => {
+    dispatch({ type: CHANGE_USER, payload: u });
+  };
+
   return (
     <div className="chats">
-      <div className="user-chat">
-        <img src="https://www.svg.com/img/gallery/the-untold-truth-of-persona-5s-joker/l-intro-1666638091.jpg" />
-        <div className="user-chat-info">
-          <span>Joker</span>
-          <p>hello</p>
-        </div>
-      </div>
+      {Object.entries(chats)?.map((chat) => {
+        return (
+          <div className="user-chat" onClick={() => handleSelect(chat[1].userInfo)}>
+            <img src={chat[1].userInfo.photoURL} />
+            <div className="user-chat-info">
+              <span>{chat[1].userInfo.displayName}</span>
+              <p>{chat[1].lastMessage?.text}</p>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
